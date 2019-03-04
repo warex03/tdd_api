@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Article, type: :model do
+describe Article, type: :model do
   describe '#validations' do
     it 'should test that the factory is valid' do
       expect(build :article).to be_valid
@@ -17,7 +17,7 @@ RSpec.describe Article, type: :model do
       expect(article).not_to be_valid
       expect(article.errors.messages[:content]).to include("can't be blank")
     end
-  
+
     it 'should validate the presence of the slug' do
       article = build :article, slug: ''
       expect(article).not_to be_valid
