@@ -43,4 +43,17 @@ describe ArticlesController do
       expect(json_data.first['id']).to eq(expected_article)
     end
   end
+
+  describe '#create' do
+    subject { post :create }
+
+    context 'when no code provided' do
+      it_behaves_like 'forbidden_requests'
+    end
+
+    context 'when invalid code provided' do
+      before { request.headers['authorization'] = 'Invalid token' }
+      it_behaves_like 'forbidden_requests'
+    end
+  end
 end
